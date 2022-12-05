@@ -10,13 +10,13 @@ wget -O - https://github.com/jcraffael/Network-automation-tasks/archive/master.t
 
 cd ansible
 
-ansible-playbook ios_configure.yml -u admin &
+ansible-playbook -i ./hosts ios_configure.yml -u admin &
 
 pid=$(ps aux | grep ansible-playbook | grep -v "grep" | awk '{print $2}')
 while ps -p $pid > /dev/null; do sleep 1s; done;
 
-ansible-playbook webserver_configure.yml -u ubuntu &
-ansible-playbook client_configure.yml -u ubuntu &
+ansible-playbook -i ./hosts webserver_configure.yml -u ubuntu &
+ansible-playbook -i ./hosts client_configure.yml -u ubuntu &
 
 
 
