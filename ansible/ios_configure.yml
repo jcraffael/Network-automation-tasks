@@ -1,0 +1,42 @@
+
+---
+- name: Configuring Cisco IOS Devices
+  gather_facts: no
+  hosts: routers
+  connection: network_cli
+  #connection: local
+  #  become: yes
+  #become_method: enable
+
+  vars:
+#    ansible_user: admin
+#    ansible_ssh_pass: ciscorouter
+#    ansible_become_pass: ciscorouter
+#    ansible_network_os: ios
+#    username: cisco
+#    password: cisco
+#    auth_pass: cisco
+#    authorize: true
+
+  tasks:
+    - name: Configure interface1
+      ios_config:
+        save_when: modified
+        parents: "Interface GigabitEthernet0/1"
+        lines:
+          - ip address 10.1.1.1 255.255.255.0
+          - no shutdown
+        #register: output1
+      
+    - name: Configure interface2
+      ios_config:
+        save_when: modified
+        parents: "Interface GigabitEthernet0/2"
+        lines:
+          - ip address 10.1.2.1 255.255.255.0
+          - no shutdown
+     #register: output
+
+
+...
+

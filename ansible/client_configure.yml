@@ -1,0 +1,39 @@
+
+---
+- name: Configuring webserver
+  gather_facts: no
+  hosts: client
+  #connection: network_cli
+  connection: ssh
+  become: true
+  become_user: root
+
+  tasks:
+    - name: Copy installation file to the webserver
+      #ansible.builtin.copy:
+      copy:  
+        src: "../pyrestclient-master/"
+        dest: "/home/ubuntu/pyrestclient-master/"
+        owner: ubuntu
+        group: ubuntu
+        mode: '755'
+        remote_src: false
+
+    - name: Install python utilities
+      apt:
+        force_apt_get: true
+        pkg: python3-pip
+        state: latest
+        update_cache: true
+
+    - name: Install REST server
+      shell: |
+          cd /home/ubuntu/pyrestclient-master/    
+          python3 setup.py sdist
+          cd dist/
+          pip3 install pyrestclient-1.0.0.tar.gz
+        #register: output1
+      
+
+...
+
