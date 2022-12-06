@@ -12,7 +12,7 @@
     - name: Copy installation file to the webserver
       #ansible.builtin.copy:
       copy:  
-        src: "../pyrestserver-master/"
+        src: "../../pyrestserver-master/"
         dest: "/home/ubuntu/pyrestserver-master/"
         owner: ubuntu
         group: ubuntu

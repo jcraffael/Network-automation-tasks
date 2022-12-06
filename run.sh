@@ -8,7 +8,7 @@ wget -O - https://github.com/athonet-open/pyrestserver/archive/master.tar.gz | t
 wget -O - https://github.com/jcraffael/pyrestclient/archive/master.tar.gz | tar xz
 wget -O - https://github.com/jcraffael/Network-automation-tasks/archive/master.tar.gz | tar xz
 
-cd ansible
+cd Network-automation-tasks-master/ansible
 
 ansible-playbook -i ./hosts ios_configure.yml -u admin &
 
